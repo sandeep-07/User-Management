@@ -5,5 +5,3 @@ export type User = {
   status: "Active" | "Inactive";
   email: string;
 };
-
-export type Users = User[];
