@@ -1,9 +1,29 @@
 "use client";
 import { useState } from "react";
-import { getUsers } from "./api";
-import { useQuery } from "@tanstack/react-query";
 import { DataTable } from "@/components/ui/DataTable";
 import { getColumns } from "./utils";
+import { User } from "./types";
+import { useGetUsers } from "./hooks/useGetUsers";
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { ACTION } from "./constants";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 export default function Home() {
   const [pagination, setPagination] = useState({
@@ -14,17 +34,21 @@ export default function Home() {
     sort: string[];
   }>({ sort: [] });
 
-  console.log("config", config);
-  const columnns = getColumns({ config, setConfig });
+  const [selectedItem, setSelectedItem] = useState<User | null>(null);
+  const [action, setAction] = useState<string | null>(null);
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["users", pagination.pageIndex, pagination.pageSize, config.sort],
-    queryFn: () =>
-      getUsers({
-        page: pagination.pageIndex,
-        size: pagination.pageSize,
-        sort: config.sort,
-      }),
+  const handleActionClick = (action: "view" | "edit" | "delete", row: User) => {
+    console.log("action", action);
+    console.log("row", row);
+    setSelectedItem(row);
+    setAction(action);
+  };
+  const columnns = getColumns({ config, setConfig, handleActionClick });
+
+  const { data, isLoading } = useGetUsers({
+    page: pagination.pageIndex,
+    limit: pagination.pageSize,
+    sort: config.sort,
   });
 
   if (!data || isLoading) {
@@ -41,6 +65,25 @@ export default function Home() {
         </p>
       </div>
       <h1 className="text-2xl my-2 font-bold ">Users Management</h1>
+      <AlertDialog open={selectedItem !== null}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
+              {ACTION[(action as keyof typeof ACTION) ?? "view"].title}
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              <DialogContent item={selectedItem} action={action} />
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => setSelectedItem(null)}>
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction>Continue</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
       <DataTable
         pagination={pagination}
         setPagination={setPagination}
@@ -54,3 +97,46 @@ export default function Home() {
     </div>
   );
 }
+
+const DialogContent = ({
+  item,
+  action,
+}: {
+  item: User | null;
+  action: string | null;
+}) => {
+  if (!item) return null;
+  switch (action) {
+    case "view":
+      return (
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[100px]">Field</TableHead>
+              <TableHead>Value</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableCell className="font-medium">ID</TableCell>
+              <TableCell>{item.id}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell className="font-medium">Name</TableCell>
+              <TableCell>{item.name}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell className="font-medium">Email</TableCell>
+              <TableCell>{item.email}</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      );
+    case "edit":
+      return <div></div>;
+    case "delete":
+      return <div></div>;
+    default:
+      return null;
+  }
+};

@@ -1,14 +1,6 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "John Doe",
-      "email": "john@example.com",
-      "role": "Admin",
-      "status": "Active",
-      "lastLogin": "2024-03-20T10:30:00Z"
-    },
-    {
       "id": 2,
       "name": "Jane Smith",
       "email": "jane@example.com",
