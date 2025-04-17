@@ -5,21 +5,18 @@ export const getUsers = ({
   page = 1,
   size = 10,
   sort = [],
+  query,
 }: {
   page?: number;
   size?: number;
   sort?: string[];
+  query: string;
 }) => {
-  console.log(
-    sort.map((item) => {
-      const order = item.split(",")[1];
-      return order === "asc" ? order : `-${item.split(",")[0]}`;
-    })
-  );
   return axios.get<User[]>(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
     params: {
       ["_page"]: page,
       ["_limit"]: size,
+      ["name_like"]: query,
       ["_sort"]: sort
         .map((item) => {
           const order = item.split(",")[1];
@@ -32,27 +29,7 @@ export const getUsers = ({
   });
 };
 
-// export const createUser = (data: Omit<User, "id">) => {
-//   return axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users`, data);
-// };
-
 const API_URL = "http://localhost:3001";
-
-// export const getUsers = async (params: {
-//   page: number;
-//   limit: number;
-//   sort?: string[];
-// }) => {
-//   const { page, limit, sort } = params;
-//   const sortQuery = sort?.length ? `&_sort=${sort.join(",")}` : "";
-//   const response = await axios.get(
-//     `${API_URL}/users?_page=${page}&_limit=${limit}${sortQuery}`
-//   );
-//   return {
-//     data: response.data,
-//     headers: response.headers,
-//   };
-// };
 
 export const createUser = async (user: Omit<User, "id">) => {
   const response = await axios.post(`${API_URL}/users`, user);

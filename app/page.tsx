@@ -1,6 +1,5 @@
 "use client";
-import { useState } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { DataTable } from "@/components/ui/DataTable";
 import { getColumns } from "./utils";
 import { User } from "./types";
@@ -8,16 +7,7 @@ import { useGetUsers } from "./hooks/useGetUsers";
 import { useMutateUser } from "./hooks/useMutateUser";
 import { DialogUI } from "@/components/UserDialog";
 import { CreateUser } from "@/components/CreateUser";
-
-const queryClient = new QueryClient();
-
-function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <HomePage />
-    </QueryClientProvider>
-  );
-}
+import { Input } from "@/components/ui/input";
 
 function HomePage() {
   const [pagination, setPagination] = useState({
@@ -28,11 +18,21 @@ function HomePage() {
     sort: string[];
   }>({ sort: [] });
 
+  function useDebounce<T>(value: T, delay: number = 300): T {
+    const [debounced, setDebounced] = useState(value);
+    useEffect(() => {
+      const id = setTimeout(() => setDebounced(value), delay);
+      return () => clearTimeout(id);
+    }, [value, delay]);
+    return debounced;
+  }
+
   const [selectedItem, setSelectedItem] = useState<User | null>(null);
   const [action, setAction] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const debouncedQuery = useDebounce(query, 1000);
 
-  console.log("selectedItem", selectedItem);
   const {
     createUser,
     updateUser,
@@ -42,24 +42,28 @@ function HomePage() {
     page: pagination.pageIndex,
     limit: pagination.pageSize,
     sort: config.sort,
+    query: debouncedQuery,
   });
 
-  const handleActionClick = (action: "view" | "edit" | "delete", row: User) => {
-    setOpen(true);
-    setSelectedItem(row);
-    setAction(action);
-  };
+  const handleActionClick = useCallback(
+    (action: "view" | "edit" | "delete", row: User) => {
+      setOpen(true);
+      setSelectedItem(row);
+      setAction(action);
+    },
+    []
+  );
 
-  const columnns = getColumns({
-    config,
-    setConfig,
-    handleActionClick,
-  });
+  const columns = useMemo(
+    () => getColumns({ config, setConfig, handleActionClick }),
+    [config, handleActionClick]
+  );
 
   const { data, isLoading } = useGetUsers({
     page: pagination.pageIndex,
     limit: pagination.pageSize,
     sort: config.sort,
+    query: debouncedQuery,
   });
 
   const handleAction = async (
@@ -107,7 +111,17 @@ function HomePage() {
         </p>
       </div>
       <h1 className="text-2xl my-2 font-bold">Users Management</h1>
-      <CreateUser setAction={setAction} setOpen={setOpen} />
+      <div className="w-full flex justify-between ">
+        <Input
+          className="w-[400px]"
+          placeholder="Search by name"
+          onChange={(e) => {
+            setQuery(e.target.value);
+          }}
+          value={query}
+        />
+        <CreateUser setAction={setAction} setOpen={setOpen} />
+      </div>
       <DialogUI
         open={open}
         setOpen={setOpen}
@@ -120,7 +134,7 @@ function HomePage() {
       <DataTable
         pagination={pagination}
         setPagination={setPagination}
-        columns={columnns}
+        columns={columns}
         headerClassName="text-gray-500 dark:bg-gray-800 dark:text-gray-400"
         pageCount={Math.ceil(
           Number(data?.headers["x-total-count"]) / pagination.pageSize
@@ -131,4 +145,4 @@ function HomePage() {
   );
 }
 
-export default App;
+export default HomePage;

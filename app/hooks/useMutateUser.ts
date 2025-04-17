@@ -6,31 +6,39 @@ export const useMutateUser = ({
   page,
   limit,
   sort,
+  query,
 }: {
   page: number;
   limit: number;
   sort: string[];
+  query?: string;
 }) => {
   const queryClient = useQueryClient();
 
   const createMutation = useMutation({
     mutationFn: (user: Omit<User, "id">) => createUser(user),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["users", page, limit, sort] });
+      queryClient.invalidateQueries({
+        queryKey: ["users", page, limit, sort, query],
+      });
     },
   });
 
   const updateMutation = useMutation({
     mutationFn: (user: User) => updateUser(user),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["users", page, limit, sort] });
+      queryClient.invalidateQueries({
+        queryKey: ["users", page, limit, sort, query],
+      });
     },
   });
 
   const deleteMutation = useMutation({
     mutationFn: (id: number) => deleteUser(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["users", page, limit, sort] });
+      queryClient.invalidateQueries({
+        queryKey: ["users", page, limit, sort, query],
+      });
     },
   });
 
