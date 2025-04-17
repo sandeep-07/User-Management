@@ -27,13 +27,6 @@ import {
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { SelectItem } from "@radix-ui/react-select";
 
 export default function Home() {
   const [pagination, setPagination] = useState({
@@ -120,7 +113,6 @@ const DialogContent = ({
       id: item?.id,
       name: item?.name,
       email: item?.email,
-      status: item?.status,
     },
   });
 
@@ -177,31 +169,6 @@ const DialogContent = ({
                 {...form.register("email")}
                 className="my-1"
               />
-            </div>
-
-            <div className="mb-4">
-              <Label htmlFor="status" className="block text-gray-700">
-                Status
-              </Label>
-              <Select
-                {...form.register("status")}
-                onValueChange={(value) => {
-                  console.log("Value aaya", value);
-                  form.setValue("status", value);
-                }}
-                value={form.watch("status")}
-              >
-                <SelectTrigger
-                  value={form.watch("status")}
-                  className="w-[180px]"
-                >
-                  <SelectValue placeholder="Select status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Active">Active</SelectItem>
-                  <SelectItem value="Inactive">Inactive</SelectItem>
-                </SelectContent>
-              </Select>
             </div>
           </form>
         </div>

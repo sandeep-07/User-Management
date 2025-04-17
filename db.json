@@ -5,7 +5,6 @@
       "name": "Jane Smith",
       "email": "jane@example.com",
       "role": "User",
-      "status": "Inactive",
       "lastLogin": "2024-03-19T15:45:00Z"
     },
     {
@@ -13,7 +12,6 @@
       "name": "Mike Johnson",
       "email": "mike@example.com",
       "role": "Editor",
-      "status": "Active",
       "lastLogin": "2024-03-20T09:15:00Z"
     },
     {
@@ -21,7 +19,6 @@
       "name": "Emily Brown",
       "email": "emily.brown@example.com",
       "role": "User",
-      "status": "Active",
       "lastLogin": "2024-03-18T11:00:00Z"
     },
     {
@@ -29,7 +26,6 @@
       "name": "David Wilson",
       "email": "david.wilson@example.com",
       "role": "Admin",
-      "status": "Inactive",
       "lastLogin": "2024-03-17T08:30:00Z"
     },
     {
@@ -37,7 +33,6 @@
       "name": "Sophia Davis",
       "email": "sophia.davis@example.com",
       "role": "Editor",
-      "status": "Active",
       "lastLogin": "2024-03-15T09:40:00Z"
     },
     {
@@ -45,7 +40,6 @@
       "name": "Daniel Garcia",
       "email": "daniel.garcia@example.com",
       "role": "User",
-      "status": "Suspended",
       "lastLogin": "2024-03-14T12:25:00Z"
     },
     {
@@ -53,7 +47,6 @@
       "name": "Jessica Martinez",
       "email": "jessica.martinez@example.com",
       "role": "Admin",
-      "status": "Active",
       "lastLogin": "2024-03-20T08:10:00Z"
     },
     {
@@ -61,7 +54,6 @@
       "name": "Andrew Robinson",
       "email": "andrew.robinson@example.com",
       "role": "Editor",
-      "status": "Inactive",
       "lastLogin": "2024-03-12T07:50:00Z"
     },
     {
@@ -69,7 +61,6 @@
       "name": "Karen Lewis",
       "email": "karen.lewis@example.com",
       "role": "User",
-      "status": "Active",
       "lastLogin": "2024-03-21T13:45:00Z"
     },
     {
@@ -77,7 +68,6 @@
       "name": "Mark Hall",
       "email": "mark.hall@example.com",
       "role": "Admin",
-      "status": "Inactive",
       "lastLogin": "2024-03-11T06:05:00Z"
     },
     {
@@ -85,7 +75,6 @@
       "name": "Patricia Young",
       "email": "patricia.young@example.com",
       "role": "Editor",
-      "status": "Active",
       "lastLogin": "2024-03-10T10:10:00Z"
     },
     {
@@ -93,7 +82,6 @@
       "name": "Thomas Allen",
       "email": "thomas.allen@example.com",
       "role": "User",
-      "status": "Suspended",
       "lastLogin": "2024-03-09T14:20:00Z"
     },
     {
@@ -101,7 +89,6 @@
       "name": "Jennifer Perez",
       "email": "jennifer.perez@example.com",
       "role": "Admin",
-      "status": "Active",
       "lastLogin": "2024-03-08T18:15:00Z"
     },
     {
@@ -109,7 +96,6 @@
       "name": "Paul Clark",
       "email": "paul.clark@example.com",
       "role": "Editor",
-      "status": "Inactive",
       "lastLogin": "2024-03-07T09:35:00Z"
     },
     {
@@ -117,7 +103,6 @@
       "name": "Sarah Lee",
       "email": "sarah.lee@example.com",
       "role": "User",
-      "status": "Active",
       "lastLogin": "2024-03-06T13:50:00Z"
     },
     {
@@ -125,7 +110,6 @@
       "name": "Peter Walker",
       "email": "peter.walker@example.com",
       "role": "Admin",
-      "status": "Suspended",
       "lastLogin": "2024-03-22T11:55:00Z"
     },
     {
@@ -133,7 +117,6 @@
       "name": "Lisa Harris",
       "email": "lisa.harris@example.com",
       "role": "Editor",
-      "status": "Active",
       "lastLogin": "2024-03-05T14:10:00Z"
     },
     {
@@ -141,7 +124,6 @@
       "name": "Steven Murphy",
       "email": "steven.murphy@example.com",
       "role": "User",
-      "status": "Inactive",
       "lastLogin": "2024-03-04T09:00:00Z"
     },
     {
@@ -149,7 +131,6 @@
       "name": "Maria Smith",
       "email": "maria.smith@example.com",
       "role": "Admin",
-      "status": "Active",
       "lastLogin": "2024-03-23T16:45:00Z"
     },
     {
@@ -157,7 +138,6 @@
       "name": "James Garcia",
       "email": "james.garcia@example.com",
       "role": "Editor",
-      "status": "Suspended",
       "lastLogin": "2024-03-24T19:35:00Z"
     },
     {
@@ -165,7 +145,6 @@
       "name": "Olivia Moore",
       "email": "olivia.moore@example.com",
       "role": "User",
-      "status": "Inactive",
       "lastLogin": "2024-03-03T12:00:00Z"
     },
     {
@@ -173,7 +152,6 @@
       "name": "Ethan Taylor",
       "email": "ethan.taylor@example.com",
       "role": "Admin",
-      "status": "Active",
       "lastLogin": "2024-03-02T08:20:00Z"
     },
     {
@@ -181,7 +159,6 @@
       "name": "Ava Anderson",
       "email": "ava.anderson@example.com",
       "role": "Editor",
-      "status": "Inactive",
       "lastLogin": "2024-03-01T07:15:00Z"
     },
     {
@@ -189,7 +166,6 @@
       "name": "Noah Thomas",
       "email": "noah.thomas@example.com",
       "role": "User",
-      "status": "Active",
       "lastLogin": "2024-03-24T21:05:00Z"
     },
     {
@@ -197,7 +173,6 @@
       "name": "Mia Thompson",
       "email": "mia.thompson@example.com",
       "role": "Admin",
-      "status": "Suspended",
       "lastLogin": "2024-03-25T10:50:00Z"
     },
     {
@@ -205,7 +180,6 @@
       "name": "Jackson Martin",
       "email": "jackson.martin@example.com",
       "role": "Editor",
-      "status": "Active",
       "lastLogin": "2024-03-03T13:25:00Z"
     },
     {
@@ -213,7 +187,6 @@
       "name": "Avery White",
       "email": "avery.white@example.com",
       "role": "User",
-      "status": "Inactive",
       "lastLogin": "2024-03-10T06:50:00Z"
     },
     {
@@ -221,7 +194,6 @@
       "name": "Liam King",
       "email": "liam.king@example.com",
       "role": "Admin",
-      "status": "Active",
       "lastLogin": "2024-03-11T10:35:00Z"
     },
     {
@@ -229,7 +201,6 @@
       "name": "Harper Hill",
       "email": "harper.hill@example.com",
       "role": "Editor",
-      "status": "Inactive",
       "lastLogin": "2024-03-15T16:10:00Z"
     },
     {
@@ -237,7 +208,6 @@
       "name": "Benjamin Scott",
       "email": "benjamin.scott@example.com",
       "role": "User",
-      "status": "Suspended",
       "lastLogin": "2024-03-12T07:45:00Z"
     },
     {
@@ -245,7 +215,6 @@
       "name": "Amelia Green",
       "email": "amelia.green@example.com",
       "role": "Admin",
-      "status": "Active",
       "lastLogin": "2024-03-14T11:20:00Z"
     },
     {
@@ -253,7 +222,6 @@
       "name": "Oliver Adams",
       "email": "oliver.adams@example.com",
       "role": "Editor",
-      "status": "Inactive",
       "lastLogin": "2024-03-13T09:10:00Z"
     },
     {
@@ -261,7 +229,6 @@
       "name": "Evelyn Baker",
       "email": "evelyn.baker@example.com",
       "role": "User",
-      "status": "Active",
       "lastLogin": "2024-03-17T17:35:00Z"
     },
     {
@@ -269,7 +236,6 @@
       "name": "Mason Nelson",
       "email": "mason.nelson@example.com",
       "role": "Admin",
-      "status": "Inactive",
       "lastLogin": "2024-03-16T14:00:00Z"
     },
     {
@@ -277,7 +243,6 @@
       "name": "Isabella Carter",
       "email": "isabella.carter@example.com",
       "role": "Editor",
-      "status": "Active",
       "lastLogin": "2024-03-18T10:30:00Z"
     },
     {
@@ -285,7 +250,6 @@
       "name": "Logan Mitchell",
       "email": "logan.mitchell@example.com",
       "role": "User",
-      "status": "Inactive",
       "lastLogin": "2024-03-18T15:10:00Z"
     },
     {
@@ -293,7 +257,6 @@
       "name": "Charlotte Rivera",
       "email": "charlotte.rivera@example.com",
       "role": "Admin",
-      "status": "Suspended",
       "lastLogin": "2024-03-07T20:55:00Z"
     },
     {
@@ -301,7 +264,6 @@
       "name": "Henry Phillips",
       "email": "henry.phillips@example.com",
       "role": "Editor",
-      "status": "Active",
       "lastLogin": "2024-03-09T06:45:00Z"
     },
     {
@@ -309,7 +271,6 @@
       "name": "Grace Turner",
       "email": "grace.turner@example.com",
       "role": "User",
-      "status": "Inactive",
       "lastLogin": "2024-03-08T19:05:00Z"
     },
     {
@@ -317,7 +278,6 @@
       "name": "Jack Parker",
       "email": "jack.parker@example.com",
       "role": "Admin",
-      "status": "Active",
       "lastLogin": "2024-03-22T12:05:00Z"
     },
     {
@@ -325,7 +285,6 @@
       "name": "Ella Evans",
       "email": "ella.evans@example.com",
       "role": "Editor",
-      "status": "Suspended",
       "lastLogin": "2024-03-21T22:30:00Z"
     },
     {
@@ -333,7 +292,6 @@
       "name": "Alexander Edwards",
       "email": "alexander.edwards@example.com",
       "role": "User",
-      "status": "Inactive",
       "lastLogin": "2024-03-20T06:25:00Z"
     },
     {
@@ -341,7 +299,6 @@
       "name": "Ariana Sanders",
       "email": "ariana.sanders@example.com",
       "role": "Admin",
-      "status": "Active",
       "lastLogin": "2024-03-05T08:00:00Z"
     },
     {
@@ -349,7 +306,6 @@
       "name": "Wyatt Ross",
       "email": "wyatt.ross@example.com",
       "role": "Editor",
-      "status": "Inactive",
       "lastLogin": "2024-03-11T17:10:00Z"
     },
     {
@@ -357,7 +313,6 @@
       "name": "Victoria Brooks",
       "email": "victoria.brooks@example.com",
       "role": "User",
-      "status": "Active",
       "lastLogin": "2024-03-19T12:45:00Z"
     },
     {
@@ -365,7 +320,6 @@
       "name": "Sebastian Kelly",
       "email": "sebastian.kelly@example.com",
       "role": "Admin",
-      "status": "Inactive",
       "lastLogin": "2024-03-10T18:00:00Z"
     },
     {
@@ -373,7 +327,6 @@
       "name": "Layla Reed",
       "email": "layla.reed@example.com",
       "role": "Editor",
-      "status": "Active",
       "lastLogin": "2024-03-06T21:05:00Z"
     },
     {
@@ -381,7 +334,6 @@
       "name": "Carter Bailey",
       "email": "carter.bailey@example.com",
       "role": "User",
-      "status": "Suspended",
       "lastLogin": "2024-03-12T14:40:00Z"
     },
     {
@@ -389,7 +341,6 @@
       "name": "Penelope Foster",
       "email": "penelope.foster@example.com",
       "role": "Admin",
-      "status": "Active",
       "lastLogin": "2024-03-21T09:25:00Z"
     },
     {
@@ -397,7 +348,6 @@
       "name": "Lincoln Ramirez",
       "email": "lincoln.ramirez@example.com",
       "role": "Editor",
-      "status": "Inactive",
       "lastLogin": "2024-03-18T08:15:00Z"
     },
     {
@@ -405,7 +355,6 @@
       "name": "Stella Price",
       "email": "stella.price@example.com",
       "role": "User",
-      "status": "Active",
       "lastLogin": "2024-03-15T10:55:00Z"
     },
     {
@@ -413,7 +362,6 @@
       "name": "Levi Bell",
       "email": "levi.bell@example.com",
       "role": "Admin",
-      "status": "Inactive",
       "lastLogin": "2024-03-16T11:05:00Z"
     },
     {
@@ -421,7 +369,6 @@
       "name": "Aria Cooper",
       "email": "aria.cooper@example.com",
       "role": "Editor",
-      "status": "Active",
       "lastLogin": "2024-03-23T14:55:00Z"
     },
     {
@@ -429,7 +376,6 @@
       "name": "Leo Richardson",
       "email": "leo.richardson@example.com",
       "role": "User",
-      "status": "Inactive",
       "lastLogin": "2024-03-25T20:10:00Z"
     },
     {
@@ -437,7 +383,6 @@
       "name": "Hazel Cox",
       "email": "hazel.cox@example.com",
       "role": "Admin",
-      "status": "Active",
       "lastLogin": "2024-03-20T15:15:00Z"
     },
     {
@@ -445,7 +390,6 @@
       "name": "Julian Ramirez",
       "email": "julian.ramirez@example.com",
       "role": "Editor",
-      "status": "Suspended",
       "lastLogin": "2024-03-09T11:30:00Z"
     },
     {
@@ -453,7 +397,6 @@
       "name": "Paisley Gray",
       "email": "paisley.gray@example.com",
       "role": "User",
-      "status": "Active",
       "lastLogin": "2024-03-16T16:45:00Z"
     },
     {
@@ -461,7 +404,6 @@
       "name": "Nolan Howard",
       "email": "nolan.howard@example.com",
       "role": "Admin",
-      "status": "Inactive",
       "lastLogin": "2024-03-14T07:25:00Z"
     },
     {
@@ -469,7 +411,6 @@
       "name": "Audrey Ward",
       "email": "audrey.ward@example.com",
       "role": "Editor",
-      "status": "Active",
       "lastLogin": "2024-03-12T19:20:00Z"
     },
     {
@@ -477,7 +418,6 @@
       "name": "Hudson Cox",
       "email": "hudson.cox@example.com",
       "role": "User",
-      "status": "Inactive",
       "lastLogin": "2024-03-13T10:00:00Z"
     },
     {
@@ -485,14 +425,12 @@
       "name": "Ellie Foster",
       "email": "ellie.foster@example.com",
       "role": "Admin",
-      "status": "Suspended",
       "lastLogin": "2024-03-24T17:10:00Z"
     },
     {
       "name": "ssss",
       "email": "sandeep+r@keychain.com",
       "role": "ADmin",
-      "status": "active",
       "joinedDate": "121212",
       "id": 63
     }
