@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { DataTable } from "@/components/ui/DataTable";
 import { getColumns } from "./utils";
 import { User } from "./types";
@@ -8,6 +8,7 @@ import { useMutateUser } from "./hooks/useMutateUser";
 import { DialogUI } from "@/components/UserDialog";
 import { CreateUser } from "@/components/CreateUser";
 import { Input } from "@/components/ui/input";
+import { useDebounce } from "./hooks/useDebounce";
 
 function HomePage() {
   const [pagination, setPagination] = useState({
@@ -17,15 +18,6 @@ function HomePage() {
   const [config, setConfig] = useState<{
     sort: string[];
   }>({ sort: [] });
-
-  function useDebounce<T>(value: T, delay: number = 300): T {
-    const [debounced, setDebounced] = useState(value);
-    useEffect(() => {
-      const id = setTimeout(() => setDebounced(value), delay);
-      return () => clearTimeout(id);
-    }, [value, delay]);
-    return debounced;
-  }
 
   const [selectedItem, setSelectedItem] = useState<User | null>(null);
   const [action, setAction] = useState<string | null>(null);
@@ -66,36 +58,44 @@ function HomePage() {
     query: debouncedQuery,
   });
 
-  const handleAction = async (
-    action: string | null,
-    formData?: { name: string; email: string }
-  ) => {
-    console.log("action", action);
-    console.log("formData", formData);
-    try {
-      switch (action) {
-        case "edit":
-          if (selectedItem && formData) {
-            await updateUser({ ...selectedItem, ...formData });
-          }
-          break;
-        case "delete":
-          if (selectedItem) {
-            await deleteUser(selectedItem.id);
-          }
-          break;
-        case "create":
-          if (formData) {
-            await createUser(formData);
-          }
-          break;
+  const handleAction = useCallback(
+    async (
+      action: string | null,
+      formData?: { name: string; email: string }
+    ) => {
+      try {
+        switch (action) {
+          case "edit":
+            if (selectedItem && formData) {
+              await updateUser({ ...selectedItem, ...formData });
+            }
+            break;
+          case "delete":
+            if (selectedItem) {
+              await deleteUser(selectedItem.id);
+            }
+            break;
+          case "create":
+            if (formData) {
+              await createUser(formData);
+            }
+            break;
+        }
+        setOpen(false);
+        setSelectedItem(null);
+      } catch (error) {
+        console.error("Error handling action:", error);
       }
-      setOpen(false);
-      setSelectedItem(null);
-    } catch (error) {
-      console.error("Error handling action:", error);
-    }
-  };
+    },
+    [selectedItem, createUser, updateUser, deleteUser]
+  );
+
+  const handleSearchChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setQuery(e.target.value);
+    },
+    []
+  );
 
   if (!data || isLoading) {
     return <div className="container mx-auto py-10">Loading...</div>;
@@ -111,13 +111,11 @@ function HomePage() {
         </p>
       </div>
       <h1 className="text-2xl my-2 font-bold">Users Management</h1>
-      <div className="w-full flex justify-between ">
+      <div className="w-full flex justify-between">
         <Input
           className="w-[400px]"
           placeholder="Search by name"
-          onChange={(e) => {
-            setQuery(e.target.value);
-          }}
+          onChange={handleSearchChange}
           value={query}
         />
         <CreateUser setAction={setAction} setOpen={setOpen} />
