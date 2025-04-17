@@ -31,3 +31,7 @@ export const getUsers = ({
     },
   });
 };
+
+export const createUser = (data: Omit<User, "id">) => {
+  return axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users`, data);
+};

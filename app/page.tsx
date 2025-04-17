@@ -27,6 +27,8 @@ import {
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { createUser } from "./api";
 
 export default function Home() {
   const [pagination, setPagination] = useState({
@@ -39,14 +41,20 @@ export default function Home() {
 
   const [selectedItem, setSelectedItem] = useState<User | null>(null);
   const [action, setAction] = useState<string | null>(null);
+  const [open, setOpen] = useState(false);
 
   const handleActionClick = (action: "view" | "edit" | "delete", row: User) => {
+    setOpen(true);
     console.log("action", action);
     console.log("row", row);
     setSelectedItem(row);
     setAction(action);
   };
-  const columnns = getColumns({ config, setConfig, handleActionClick });
+  const columnns = getColumns({
+    config,
+    setConfig,
+    handleActionClick,
+  });
 
   const { data, isLoading } = useGetUsers({
     page: pagination.pageIndex,
@@ -68,25 +76,14 @@ export default function Home() {
         </p>
       </div>
       <h1 className="text-2xl my-2 font-bold ">Users Management</h1>
-      <AlertDialog open={selectedItem !== null}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>
-              {ACTION[(action as keyof typeof ACTION) ?? "view"].title}
-            </AlertDialogTitle>
-            <AlertDialogDescription>
-              <DialogContent item={selectedItem} action={action} />
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel onClick={() => setSelectedItem(null)}>
-              Cancel
-            </AlertDialogCancel>
-            <AlertDialogAction>Continue</AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-
+      <CreateUser setAction={setAction} open={open} setOpen={setOpen} />
+      <DialogUI
+        open={open}
+        setOpen={setOpen}
+        action={action}
+        selectedItem={selectedItem}
+        setSelectedItem={setSelectedItem}
+      />
       <DataTable
         pagination={pagination}
         setPagination={setPagination}
@@ -100,6 +97,83 @@ export default function Home() {
     </div>
   );
 }
+
+const CreateUser = ({
+  setOpen,
+  setAction,
+}: {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setAction: React.Dispatch<React.SetStateAction<string | null>>;
+}) => {
+  return (
+    <Button
+      onClick={() => {
+        setOpen(true);
+        setAction("create");
+      }}
+    >
+      Add User
+    </Button>
+  );
+};
+const handleAction = (
+  action: string | null,
+  setSelectedItem: React.Dispatch<React.SetStateAction<User | null>>
+) => {
+  switch (action) {
+    case "edit":
+      console.log("edit");
+      break;
+    case "delete":
+      console.log("delete");
+      break;
+    case "create":
+
+    default:
+      console.log("view");
+  }
+  setSelectedItem(null);
+};
+
+const DialogUI = ({
+  open,
+  setOpen,
+  selectedItem,
+  action,
+  setSelectedItem,
+}: {
+  selectedItem: User | null;
+  action: string | null;
+  setSelectedItem: React.Dispatch<React.SetStateAction<User | null>>;
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
+  return (
+    <AlertDialog open={open} onOpenChange={() => setOpen((prev) => !prev)}>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>
+            {ACTION[(action as keyof typeof ACTION) ?? "view"].title}
+          </AlertDialogTitle>
+          <AlertDialogDescription>
+            <DialogContent item={selectedItem} action={action} />
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel onClick={() => setSelectedItem(null)}>
+            Cancel
+          </AlertDialogCancel>
+          <AlertDialogAction
+            onClick={() => handleAction(action, setSelectedItem)}
+          >
+            Continue
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+};
 
 const DialogContent = ({
   item,
@@ -116,8 +190,6 @@ const DialogContent = ({
     },
   });
 
-  console.log("form", form.watch());
-  if (!item) return null;
   switch (action) {
     case "view":
       return (
@@ -145,6 +217,7 @@ const DialogContent = ({
         </Table>
       );
     case "edit":
+    case "create":
       return (
         <div>
           <form>
@@ -171,6 +244,14 @@ const DialogContent = ({
               />
             </div>
           </form>
+          <Button
+            onClick={async () => {
+              // @ts-expect-error
+              await createUser(form.getValues());
+            }}
+          >
+            Add User
+          </Button>
         </div>
       );
     case "delete":
@@ -188,6 +269,7 @@ const DialogContent = ({
           </div>
         </div>
       );
+
     default:
       return null;
   }
