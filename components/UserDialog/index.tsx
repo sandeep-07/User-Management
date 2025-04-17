@@ -30,14 +30,10 @@ export const DialogUI: React.FC<DialogUIProps> = ({
   setOpen,
   selectedItem,
   action,
-  setSelectedItem,
   onSubmit,
   isLoading,
 }) => {
   const handleOpenChange = (newOpen: boolean) => {
-    if (!newOpen) {
-      setSelectedItem(null);
-    }
     setOpen(newOpen);
   };
 

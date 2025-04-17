@@ -32,12 +32,17 @@ function HomePage() {
   const [action, setAction] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
 
+  console.log("selectedItem", selectedItem);
   const {
     createUser,
     updateUser,
     deleteUser,
     isLoading: isMutating,
-  } = useMutateUser();
+  } = useMutateUser({
+    page: pagination.pageIndex,
+    limit: pagination.pageSize,
+    sort: config.sort,
+  });
 
   const handleActionClick = (action: "view" | "edit" | "delete", row: User) => {
     setOpen(true);

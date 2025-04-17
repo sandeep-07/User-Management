@@ -60,6 +60,7 @@ export const createUser = async (user: Omit<User, "id">) => {
 };
 
 export const updateUser = async (user: User) => {
+  console.log("Came in updateUser");
   const response = await axios.put(`${API_URL}/users/${user.id}`, user);
   return response.data;
 };

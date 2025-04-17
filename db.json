@@ -1,36 +1,8 @@
 {
   "users": [
     {
-      "id": "3",
-      "name": "Mike Johnson",
-      "email": "mike@example.com",
-      "role": "Editor",
-      "lastLogin": "2024-03-20T09:15:00Z"
-    },
-    {
-      "id": "4",
-      "name": "Emily Brown",
-      "email": "emily.brown@example.com",
-      "role": "User",
-      "lastLogin": "2024-03-18T11:00:00Z"
-    },
-    {
-      "id": "5",
-      "name": "David Wilson",
-      "email": "david.wilson@example.com",
-      "role": "Admin",
-      "lastLogin": "2024-03-17T08:30:00Z"
-    },
-    {
-      "id": "6",
-      "name": "Sophia Davis",
-      "email": "sophia.davis@example.com",
-      "role": "Editor",
-      "lastLogin": "2024-03-15T09:40:00Z"
-    },
-    {
       "id": "7",
-      "name": "Daniel Garcia",
+      "name": "Daniel Garcia2",
       "email": "daniel.garcia@example.com",
       "role": "User",
       "lastLogin": "2024-03-14T12:25:00Z"
@@ -435,6 +407,11 @@
     {
       "id": "9d83",
       "name": "lklk",
+      "email": "sandeep+admin@keychain.com"
+    },
+    {
+      "id": "2aa2",
+      "name": "Sandeep",
       "email": "sandeep+admin@keychain.com"
     }
   ]
