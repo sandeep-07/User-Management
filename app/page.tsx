@@ -24,6 +24,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useForm } from "react-hook-form";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { SelectItem } from "@radix-ui/react-select";
 
 export default function Home() {
   const [pagination, setPagination] = useState({
@@ -105,6 +115,16 @@ const DialogContent = ({
   item: User | null;
   action: string | null;
 }) => {
+  const form = useForm({
+    defaultValues: {
+      id: item?.id,
+      name: item?.name,
+      email: item?.email,
+      status: item?.status,
+    },
+  });
+
+  console.log("form", form.watch());
   if (!item) return null;
   switch (action) {
     case "view":
@@ -133,9 +153,74 @@ const DialogContent = ({
         </Table>
       );
     case "edit":
-      return <div></div>;
+      return (
+        <div>
+          <form>
+            <div className="mb-4">
+              <Label htmlFor="name" className="block text-gray-700">
+                Name
+              </Label>
+              <Input
+                type="text"
+                id="name"
+                {...form.register("name")}
+                className="my-1"
+              />
+            </div>
+            <div className="mb-4">
+              <Label htmlFor="email" className="block text-gray-700">
+                Email
+              </Label>
+              <Input
+                type="email"
+                id="email"
+                {...form.register("email")}
+                className="my-1"
+              />
+            </div>
+
+            <div className="mb-4">
+              <Label htmlFor="status" className="block text-gray-700">
+                Status
+              </Label>
+              <Select
+                {...form.register("status")}
+                onValueChange={(value) => {
+                  console.log("Value aaya", value);
+                  form.setValue("status", value);
+                }}
+                value={form.watch("status")}
+              >
+                <SelectTrigger
+                  value={form.watch("status")}
+                  className="w-[180px]"
+                >
+                  <SelectValue placeholder="Select status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Active">Active</SelectItem>
+                  <SelectItem value="Inactive">Inactive</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </form>
+        </div>
+      );
     case "delete":
-      return <div></div>;
+      return (
+        <div>
+          Are you sure you want to delete this user?
+          <div className="text-red-500">
+            <strong>Note:</strong> This action cannot be undone.
+          </div>
+          <div className="mt-4">
+            <strong>User ID:</strong> {item.id}
+          </div>
+          <div className="mt-2">
+            <strong>User Name:</strong> {item.name}{" "}
+          </div>
+        </div>
+      );
     default:
       return null;
   }
