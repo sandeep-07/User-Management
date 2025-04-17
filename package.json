@@ -3,12 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "server": "json-server --watch db.json --port 3001",
-    "start-serve": "concurrently \"npm run server\" \"npm run dev\""
+    "start": "next start"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.1.7",
