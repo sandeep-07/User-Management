@@ -1,5 +1,6 @@
 import axios from "axios";
 import { User } from "../types";
+const API_URL = "http://localhost:3000/api";
 
 export const getUsers = ({
   page = 1,
@@ -12,7 +13,7 @@ export const getUsers = ({
   sort?: string[];
   query: string;
 }) => {
-  return axios.get<User[]>(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
+  return axios.get<User[]>(`${API_URL}/users`, {
     params: {
       ["_page"]: page,
       ["_limit"]: size,
@@ -28,8 +29,6 @@ export const getUsers = ({
     },
   });
 };
-
-const API_URL = "http://localhost:3001";
 
 export const createUser = async (user: Omit<User, "id">) => {
   const response = await axios.post(`${API_URL}/users`, user);
