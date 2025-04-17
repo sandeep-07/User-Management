@@ -32,6 +32,38 @@ export const getUsers = ({
   });
 };
 
-export const createUser = (data: Omit<User, "id">) => {
-  return axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users`, data);
+// export const createUser = (data: Omit<User, "id">) => {
+//   return axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users`, data);
+// };
+
+const API_URL = "http://localhost:3001";
+
+// export const getUsers = async (params: {
+//   page: number;
+//   limit: number;
+//   sort?: string[];
+// }) => {
+//   const { page, limit, sort } = params;
+//   const sortQuery = sort?.length ? `&_sort=${sort.join(",")}` : "";
+//   const response = await axios.get(
+//     `${API_URL}/users?_page=${page}&_limit=${limit}${sortQuery}`
+//   );
+//   return {
+//     data: response.data,
+//     headers: response.headers,
+//   };
+// };
+
+export const createUser = async (user: Omit<User, "id">) => {
+  const response = await axios.post(`${API_URL}/users`, user);
+  return response.data;
+};
+
+export const updateUser = async (user: User) => {
+  const response = await axios.put(`${API_URL}/users/${user.id}`, user);
+  return response.data;
+};
+
+export const deleteUser = async (id: number) => {
+  await axios.delete(`${API_URL}/users/${id}`);
 };

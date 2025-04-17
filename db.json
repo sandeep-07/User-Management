@@ -1,13 +1,6 @@
 {
   "users": [
     {
-      "id": "2",
-      "name": "Jane Smith",
-      "email": "jane@example.com",
-      "role": "User",
-      "lastLogin": "2024-03-19T15:45:00Z"
-    },
-    {
       "id": "3",
       "name": "Mike Johnson",
       "email": "mike@example.com",
@@ -436,6 +429,11 @@
     },
     {
       "id": "6d80",
+      "name": "lklk",
+      "email": "sandeep+admin@keychain.com"
+    },
+    {
+      "id": "9d83",
       "name": "lklk",
       "email": "sandeep+admin@keychain.com"
     }
